@@ -25,7 +25,6 @@ public class ProfitView extends View {
     private Paint mPaint;
     private List<ProfitData> mProfitDatas = new ArrayList<>();
     private float minY, maxY, minX, maxX;
-    private List<Integer> mColors = new ArrayList<>();
     private PointF mCurrPosition = new PointF();
 
     public ProfitView(Context context, @Nullable AttributeSet attrs) {
@@ -42,10 +41,9 @@ public class ProfitView extends View {
         return true;
     }
 
-    public void setProfitDataList(List<ProfitData> data, List<Integer> colors) {
+    public void setProfitDataList(List<ProfitData> data) {
         mProfitDatas.clear();
         mProfitDatas.addAll(data);
-        mColors.addAll(colors);
         invalidate();
     }
 
@@ -160,7 +158,7 @@ public class ProfitView extends View {
             float x1 = d.getTo() * xCoef + centerRect.left;
             float y = 0 + centerRect.bottom;
             float y1 = centerRect.bottom - d.getValue() * yCoef;
-            mPaint.setColor(mColors.get(d.getValue() - 1));
+            mPaint.setColor(d.getColor());
             canvas.drawRect(x, y1, x1, y, mPaint);
         }
 

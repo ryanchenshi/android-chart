@@ -108,30 +108,30 @@ public class ProfitView extends View {
         }
 
         if (pos >= 0) {
-            mPaint.setTextSize(dip2px(12));
+            mPaint.setTextSize(ComonUtils.dip2px(getContext(),12));
             String title = mProfitDatas.get(pos).getTitle();
             float textWidth = mPaint.measureText(title) + 8;
-            float x = mCurrPosition.x + dip2px(2);
-            float x1 = x + textWidth + dip2px(16);
+            float x = mCurrPosition.x + ComonUtils.dip2px(getContext(),2);
+            float x1 = x + textWidth + ComonUtils.dip2px(getContext(),16);
             if (mCurrPosition.x < (centerRect.width() / 2 + centerRect.left)) {
-                RectF markViewRect = new RectF(x, mCurrPosition.y - dip2px(20),
-                        x1, mCurrPosition.y + dip2px(20));
+                RectF markViewRect = new RectF(x, mCurrPosition.y - ComonUtils.dip2px(getContext(),20),
+                        x1, mCurrPosition.y + ComonUtils.dip2px(getContext(),20));
                 mPaint.setColor(getResources().getColor(R.color.colorDark50));
                 canvas.drawRect(markViewRect,mPaint);
 
                 mPaint.setColor(Color.WHITE);
-                canvas.drawText(title, markViewRect.left + dip2px(4),
+                canvas.drawText(title, markViewRect.left + ComonUtils.dip2px(getContext(),4),
                         markViewRect.top + markViewRect.height() / 2, mPaint);
             } else {
-                x1 = mCurrPosition.x - dip2px(2);
-                x = x - textWidth -dip2px(16);
-                RectF markViewRect = new RectF(x, mCurrPosition.y - dip2px(20),
-                        x1, mCurrPosition.y + dip2px(20));
+                x1 = mCurrPosition.x - ComonUtils.dip2px(getContext(),2);
+                x = x - textWidth -ComonUtils.dip2px(getContext(),16);
+                RectF markViewRect = new RectF(x, mCurrPosition.y - ComonUtils.dip2px(getContext(),20),
+                        x1, mCurrPosition.y + ComonUtils.dip2px(getContext(),20));
                 mPaint.setColor(getResources().getColor(R.color.colorDark50));
                 canvas.drawRect(markViewRect,mPaint);
 
                 mPaint.setColor(Color.WHITE);
-                canvas.drawText(title, markViewRect.right - dip2px(4) - textWidth,
+                canvas.drawText(title, markViewRect.right - ComonUtils.dip2px(getContext(),4) - textWidth,
                         markViewRect.top + markViewRect.height() / 2, mPaint);
             }
 
@@ -198,7 +198,7 @@ public class ProfitView extends View {
         int range = (int)(maxX - minX);
         int step = range / 5;
         float xCoef = bottomRect.width() / (maxX - minX);
-        mPaint.setTextSize(dip2px(12));
+        mPaint.setTextSize(ComonUtils.dip2px(getContext(),12));
         float height = mPaint.getFontMetrics().bottom - mPaint.getFontMetrics().top + 3;
 
         for (int i = 0; i <= 5; ++i) {
@@ -230,25 +230,22 @@ public class ProfitView extends View {
             step = 1;
         }
 
-        mPaint.setTextSize(dip2px(12));
+        mPaint.setTextSize(ComonUtils.dip2px(getContext(),12));
         float fontHeight = mPaint.getFontMetrics().bottom - mPaint.getFontMetrics().top + 3;
         for (int i = 0; i <= 5; ++i) {
             float y = leftRect.bottom - (i * step * ycoef);
 
-            canvas.drawLine(leftRect.right, y, leftRect.right - dip2px(4), y, mPaint);
+            canvas.drawLine(leftRect.right, y, leftRect.right - ComonUtils.dip2px(getContext(),4), y, mPaint);
 
             String lab = String.format(Locale.ENGLISH, "%d", (int)(step * i));
             if (i == 5) {
-                canvas.drawText(lab, leftRect.right - mPaint.measureText(lab) - dip2px(5), leftRect.top - fontHeight, mPaint);
+                canvas.drawText(lab, leftRect.right - mPaint.measureText(lab) - ComonUtils.dip2px(getContext(),5), leftRect.top - fontHeight, mPaint);
             } else {
-                canvas.drawText(lab, leftRect.right - mPaint.measureText(lab) - dip2px(5), y, mPaint);
+                canvas.drawText(lab, leftRect.right - mPaint.measureText(lab) - ComonUtils.dip2px(getContext(),5), y, mPaint);
             }
         }
 
     }
 
-    public int dip2px(float dpValue) {
-        final float scale = getResources().getDisplayMetrics().density;
-        return (int) (dpValue * scale + 0.5f);
-    }
+
 }
